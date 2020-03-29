@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>JSON Practice</title>
+    <style>
+        p {
+            font-size: 25px;
+        }
+        body {
+            background-color: #E6DBFF
+        }
+        h2 {
+            font-size: 35px;
+            color: #0000ff;
+        }
+        form {
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+<center><h2>Cover Band Set List</h2></center>
+
+
+<center>
+<p id="stringify"></p>
+
+<form>
+    <select id="genre" name="genre" size=1><br><br>
+        <option>ALL</option>
+        <option>HIP-HOP</option>
+        <option>Reggaeton</option>
+        <option>R & B</option>
+    </select>
+    <input type="button" value="Filter" onclick="filter()">
+</form>
+
+<p id="song0"></p>
+<p id="song1"></p>
+<p id="song2"></p>
+<p id="song3"></p>
+<p id="song4"></p>
+<p id="song5"></p>
+<p id="song6"></p>
+<p id="song7"></p>
+<p id="song8"></p>
+<p id="song9"></p>
+</center>
+
+<script>
+    var songs = {
+
+       "SONG": [
+          {
+             "ARTIST": "Travis Scott",
+             "TITLE": "RIP SCREW",
+             "GENRE": "Hip-Hop",
+             "YEAR": "2018"
+          },
+          {
+             "ARTIST": "Anuel AA",
+             "TITLE": "Amanece",
+             "GENRE": "Reggaeton",
+             "YEAR": "2018"
+          },
+          {
+             "ARTIST": "Ozuna",
+             "TITLE": "El Farsante",
+             "GENRE": "Reggaeton",
+             "YEAR": "2017"
+          },
+          {
+             "ARTIST": "Childish Gambino",
+             "TITLE": "Redbone",
+             "GENRE": "R & B",
+             "YEAR": "2016"
+          },
+          {
+             "ARTIST": "J Balvin",
+             "TITLE": "Rosa",
+             "GENRE": "Reggaeton",
+             "YEAR": "2020"
+          },
+          {
+             "ARTIST": "Afro B",
+             "TITLE": "Drogba (Joanna)",
+             "GENRE": "Hip-Hop",
+             "YEAR": "2018"
+          },
+          {
+             "ARTIST": "Frank Ocean",
+             "TITLE": "DHL",
+             "GENRE": "Hip-Hop",
+             "YEAR": "2019"
+          },
+          {
+             "ARTIST": "TLC",
+             "TITLE": "No Scrubs",
+             "GENRE": "R & B",
+             "YEAR": "1999"
+          },
+          {
+             "ARTIST": "Speaker Knockerz",
+             "TITLE": "Lonely",
+             "GENRE": "Hip-Hop",
+             "YEAR": "2014"
+          },
+          {
+             "ARTIST": "Roy Woods",
+             "TITLE": "Get You Good",
+             "GENRE": "R & B",
+             "YEAR": "2015"
+          }
+       ]
+    }
+
+    all();
+
+    function filter() {
+        var genre = document.getElementById("genre").value;
+        if (genre == "ALL") {
+            all();
+        } else if (genre == "HIP-HOP") {
+            hiphop();
+        } else if (genre == "R & B") {
+            randb();
+        } else {
+            reggaeton();
+        }
+    }
+
+    var song_string = JSON.stringify(songs);
+    document.getElementById("stringify").innerHTML = song_string;
+
+    function all() {
+        var i;
+        var text = "";
+        for (i = 0; i < 10; i++) {
+            text += "<strong>" + songs.SONG[i].ARTIST + "</strong>";
+            text += "<br>";
+            text += songs.SONG[i].TITLE;
+            text += "<br>";
+            text += songs.SONG[i].GENRE;
+            text += "<br>";
+            text += songs.SONG[i].YEAR;
+            document.getElementById("song" + i).innerHTML = text;
+            text = "";
+        }
+    }
+
+    function hiphop() {
+        all();
+        document.getElementById("song1").innerHTML = "";
+        document.getElementById("song2").innerHTML = "";
+        document.getElementById("song3").innerHTML = "";
+        document.getElementById("song4").innerHTML = "";
+        document.getElementById("song7").innerHTML = "";
+        document.getElementById("song9").innerHTML = "";
+    }
+
+    function randb() {
+        all();
+        document.getElementById("song0").innerHTML = "";
+        document.getElementById("song1").innerHTML = "";
+        document.getElementById("song2").innerHTML = "";
+        document.getElementById("song4").innerHTML = "";
+        document.getElementById("song5").innerHTML = "";
+        document.getElementById("song6").innerHTML = "";
+        document.getElementById("song8").innerHTML = "";
+    }
+
+    function reggaeton() {
+        all();
+        document.getElementById("song0").innerHTML = "";
+        document.getElementById("song3").innerHTML = "";
+        document.getElementById("song5").innerHTML = "";
+        document.getElementById("song6").innerHTML = "";
+        document.getElementById("song7").innerHTML = "";
+        document.getElementById("song8").innerHTML = "";
+        document.getElementById("song9").innerHTML = "";
+    }
+
+</script>
+</body>
+</html>
